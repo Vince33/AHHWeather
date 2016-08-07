@@ -1,13 +1,25 @@
+ var webpack = require('webpack');
+
 module.exports = {
-  entry:'./src/components/main.js',
+  devtool: 'eval-source-map',
+  entry:[
+    './src/components/main.js',
+    'webpack/hot/dev-server',
+    'webpack-dev-server/client?http://localhost:4200/'
+  ],
+
   output:{
-    path:'./',
+    path:'build',
     filename:'index.js'
   },
   devServer:{
+    hot: true,
     inline:true,
     port:4200
   },
+  plugins: [
+  new webpack.HotModuleReplacementPlugin(),
+  ],
   module:{
     loaders:[
       {
